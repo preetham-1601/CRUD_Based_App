@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.AddPostFragment"
+    android:background="#1C4A5A">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"/>
+
+
+        <TextView
+            android:id="@+id/txt_vw"
+            android:layout_width="327dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/toolbar"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/upload_a_post"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/divider"
+            android:layout_width="300dp"
+            android:layout_height="1dp"
+            android:layout_below="@id/txt_vw"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/line_1" />
+
+        <ImageView
+            android:id="@+id/img_upld"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/divider"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/imgup"
+            tools:ignore="ImageContrastCheck" />
+
+        <Button
+            android:id="@+id/btn_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="123dp"
+            android:layout_toEndOf="@id/img_upld"
+            android:text="@string/load_image"
+            android:textColor="#5D4037"
+            tools:ignore="TextContrastCheck" />
+
+        <ImageView
+            android:id="@+id/divider2"
+            android:layout_width="300dp"
+            android:layout_height="1dp"
+            android:layout_below="@id/txt_vw"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="212dp"
+            android:background="@drawable/line_1" />
+        <TextView
+            android:id="@+id/txt_vw2"
+            android:layout_width="327dp"
+            android:layout_height="59dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/enter_the_title_and_content_to_be_displayed_on_the_post"
+            android:textColor="#000000"
+            android:textSize="20sp"
+
+            android:layout_below="@id/divider2"
+            android:textStyle="bold" />
+
+
+
+        <RelativeLayout
+            android:id="@+id/rel_le"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_vw2">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/outlinedTextField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/enter_title"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:theme="@style/LoginTextInputLayoutStyle"
+                    app:hintTextColor="#d4d4d4"
+                    android:textColorHint="#d4d4d4"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@color/white"
+
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/outlinedTextField2"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:hint="@string/enter_description"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:theme="@style/LoginTextInputLayoutStyle"
+                    app:hintTextColor="#d4d4d4"
+                    android:textColorHint="#d4d4d4"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reset"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/rel_le"/>
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Upload"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/rel_le"
+            android:layout_toEndOf="@id/reset"
+            android:layout_marginStart="20dp"/>
+
+
+
+    </RelativeLayout>
+
+</ScrollView>

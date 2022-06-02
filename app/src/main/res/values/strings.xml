@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CRUD App</string>
+
+    <string name="post_title">Post Title</string>
+    <string name="post_description">Post Description</string>
+    <string name="todo">TODO</string>
+</resources>
