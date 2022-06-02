@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.fragment.findNavController
 import com.android.volley.Response
@@ -56,6 +57,11 @@ class RegisterFragment : Fragment() {
         binding.toolbar.toolbar.setNavigationOnClickListener { view ->
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
         }
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+            }
+        })
 
         binding.btnRegister.setOnClickListener {
             val email = binding.etEmail.text.toString()

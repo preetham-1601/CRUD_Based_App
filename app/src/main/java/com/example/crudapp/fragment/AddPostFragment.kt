@@ -10,9 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.crudapp.MainActivity
+import com.example.crudapp.Post
 import com.example.crudapp.PostRVModel
 import com.example.crudapp.R
 import com.example.crudapp.databinding.FragmentAddPostBinding
@@ -29,7 +31,7 @@ class AddPostFragment : Fragment() {
     private lateinit var firebaseDatabase: FirebaseDatabase
     private lateinit var databaseReference: DatabaseReference
     private lateinit var postId: String
-    private lateinit var postRVModel: PostRVModel
+    private lateinit var postRVModel: Post
 
 
     private var filePath: Uri? = null
@@ -56,6 +58,19 @@ class AddPostFragment : Fragment() {
         firebaseDatabase = FirebaseDatabase.getInstance()
         databaseReference = firebaseDatabase.getReference("Posts")
 
+        binding.toolbar.toolbar.setNavigationIcon(R.drawable.ic_back)
+        binding.toolbar.toolbar.title = "Create Post"
+        binding.toolbar.toolbar.setNavigationOnClickListener { view ->
+            findNavController().navigate(R.id.action_addPostFragment_to_homeFragment)
+        }
+
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigate(R.id.action_addPostFragment_to_homeFragment)
+
+            }
+        })
+
 
         binding.btnUp.setOnClickListener {
             selectImage()
@@ -71,17 +86,24 @@ class AddPostFragment : Fragment() {
             val postTitle = binding.outlinedTextField.editText?.text.toString()
             val postDescription = binding.outlinedTextField2.editText?.text.toString()
             postId = postTitle
-            postRVModel = PostRVModel(postTitle,postDescription,postId,postImg.toString())
+            postRVModel = Post(postId,postTitle,postImg.toString(),postDescription)
+
+            databaseReference.child(postId).setValue(postRVModel)
+            // displaying a toast message.
+            Toast.makeText(context, "Post Added..", Toast.LENGTH_SHORT)
+                .show()
+            // starting a main activity.
+            findNavController().navigate(R.id.action_addPostFragment_to_homeFragment)
 
             databaseReference.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     // on below line we are setting data in our firebase database.
-                    databaseReference.child(postId).setValue(postRVModel)
+                    //databaseReference.child(postId).setValue(postRVModel)
                     // displaying a toast message.
-                    Toast.makeText(context, "Post Added..", Toast.LENGTH_SHORT)
-                        .show()
+                    //Toast.makeText(context, "Post Added..", Toast.LENGTH_SHORT)
+                     //   .show()
                     // starting a main activity.
-                    findNavController().navigate(R.id.action_addPostFragment_to_homeFragment)
+                    //findNavController().navigate(R.id.action_addPostFragment_to_homeFragment)
 
                 }
 
@@ -95,7 +117,7 @@ class AddPostFragment : Fragment() {
                 }
             })
 
-            Toast.makeText(context, "$filePath", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(context, "$filePath", Toast.LENGTH_SHORT).show()
 
         }
         return binding.root

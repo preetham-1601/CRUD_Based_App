@@ -3,5 +3,20 @@
 
     <string name="post_title">Post Title</string>
     <string name="post_description">Post Description</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fab_content_desc">addable</string>
+    <string name="upload_a_post">Fill content for post upload</string>
+    <string name="load_image">Load Image</string>
+    <string name="enter_the_title_and_content_to_be_displayed_on_the_post">Enter the Title and Content to be Displayed on the Post</string>
+    <string name="save">Save</string>
+    <string name="reset">Reset</string>
+    <string name="enter_context">Enter Context</string>
+    <string name="enter_title">Enter Title</string>
+    <string name="enter_description">Post Description</string>
+    <string name="Upload">Upload</string>
+    <string name="update">Update post</string>
+    <string name="del">delete post</string>
+    <string name="fill">Delete or Fill Details to Update</string>
+
     <string name="todo">TODO</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.crudapp.fragment
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -9,6 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.core.net.toUri
+import androidx.core.text.set
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.crudapp.MainActivity
@@ -27,7 +31,7 @@ class EditPostFragment : Fragment() {
     private lateinit var firebaseDatabase: FirebaseDatabase
     private lateinit var databaseReference: DatabaseReference
 
-    lateinit var postId: String
+    private lateinit var postId: String
 
     private var filePath: Uri? = null
     lateinit var imagePreview: ImageView
@@ -48,42 +52,54 @@ class EditPostFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
         sessionManager = SessionManager(activity as Context)
         firebaseDatabase = FirebaseDatabase.getInstance()
+
+
+        binding.toolbar.toolbar.setNavigationIcon(R.drawable.ic_back)
+        binding.toolbar.toolbar.title = "Edit Post"
+        binding.toolbar.toolbar.setNavigationOnClickListener { view ->
+            findNavController().navigate(R.id.action_editPostFragment_to_homeFragment)
+        }
+        val sun = arguments?.getString("image_url")?.toUri()
+        val bun = arguments?.getString("title")
+        val gun = arguments?.getString("desc")
+        val kus = arguments?.getString("id")
+        binding.imgUpld.setImageURI(sun)
+        binding.outlinedTextField.editText?.setText(bun)
+        binding.outlinedTextField2.editText?.setText(gun)
+        postId = kus.toString()
+
         databaseReference = firebaseDatabase.getReference("Posts").child(postId)
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigate(R.id.action_editPostFragment_to_homeFragment)
+
+            }
+        })
+
+        binding.btnUp.setOnClickListener {
+            selectImage()
+        }
 
         binding.update.setOnClickListener {
 
-            val postImg = filePath.toString()
+            val postImage = filePath.toString()
             val postTitle = binding.outlinedTextField.editText?.text.toString()
             val postDescription = binding.outlinedTextField2.editText?.text.toString()
+            postId = kus.toString()
 
             val map: MutableMap<String, Any> = HashMap()
-            map["postImg"] = postImg
+            map["postImage"] = postImage
             map["postTitle"] = postTitle
             map["postDescription"] = postDescription
             map["postId"] = postId
 
-            databaseReference.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
+            databaseReference.updateChildren(map)
+            Toast.makeText(context, "Post Updated..", Toast.LENGTH_SHORT)
+                .show()
+            findNavController().navigate(R.id.action_editPostFragment_to_homeFragment)
 
-                    // adding a map to our database.
-                    databaseReference.updateChildren(map)
-                    // on below line we are displaying a toast message.
-                    Toast.makeText(context, "Post Updated..", Toast.LENGTH_SHORT)
-                        .show()
-                    // opening a new activity after updating our coarse.
-                    findNavController().navigate(R.id.action_editPostFragment_to_homeFragment)
 
-                }
 
-                override fun onCancelled(error: DatabaseError) {
-                    // displaying a failure message on toast.
-                    Toast.makeText(
-                        context,
-                        "Fail to update course..",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            })
         }
         binding.delete.setOnClickListener {
             deletePost()
@@ -100,6 +116,23 @@ class EditPostFragment : Fragment() {
         Toast.makeText(context, "Post Deleted", Toast.LENGTH_SHORT).show()
         findNavController().navigate(R.id.action_editPostFragment_to_homeFragment)
 
+    }
+    fun selectImage() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+
+        startActivityForResult(intent,100)
+
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
+            filePath = data?.data!!
+            binding.imgUpld.setImageURI(filePath)
+
+        }
     }
 
 }

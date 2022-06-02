@@ -56,7 +56,7 @@
             android:layout_marginTop="123dp"
             android:layout_toEndOf="@id/img_upld"
             android:text="@string/load_image"
-            android:textColor="#5D4037"
+            android:textColor="@color/white"
             tools:ignore="TextContrastCheck" />
 
         <ImageView
@@ -121,7 +121,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/outlinedTextField2"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
                     android:hint="@string/enter_description"
                     android:layout_marginTop="20dp"
                     android:layout_marginStart="10dp"

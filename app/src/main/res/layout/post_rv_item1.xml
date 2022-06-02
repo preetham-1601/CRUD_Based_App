@@ -2,11 +2,12 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_margin="5dp"
-    app:cardCornerRadius="4dp"
+    app:cardCornerRadius="10dp"
     app:cardElevation="3dp">
 
     <RelativeLayout
@@ -19,10 +20,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
-            android:padding="4dp"
+            android:padding="10dp"
             android:text="@string/post_title"
-            android:textColor="@color/black"
-            android:background="@color/white"
+            android:textColor="@color/white"
+            android:background="@color/black"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -31,6 +32,7 @@
             android:id="@+id/idIVPost"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:padding="10dp"
             android:scaleType="centerCrop"
             android:layout_below="@id/idTVPostTitle"
             android:contentDescription="@string/todo" />
@@ -43,8 +45,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/idIVPost"
             android:layout_margin="3dp"
-            android:padding="4dp"
-            android:background="@color/white"
+            android:padding="10dp"
+            android:background="@drawable/round_border"
             android:text="@string/post_description"
             android:textColor="@color/black"
             android:textSize="15sp"
