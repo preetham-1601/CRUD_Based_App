@@ -10,5 +10,4 @@
      - Firebase Realtime Database
    
  ### Application ScreenShots:
- <a href="https://drive.google.com/file/d/11yLEfunHGHijCI3KN9ukcJUki4-DlO-t/view?usp=sharing" target="_blank" rel="noreferrer"> <img src="https://drive.google.com/file/d/11yLEfunHGHijCI3KN9ukcJUki4-DlO-t/view?usp=sharing" alt="Splash Screen" /> </a>&nbsp;
  
