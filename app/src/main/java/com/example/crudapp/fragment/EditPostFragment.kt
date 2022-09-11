@@ -63,7 +63,12 @@ class EditPostFragment : Fragment() {
         val bun = arguments?.getString("title")
         val gun = arguments?.getString("desc")
         val kus = arguments?.getString("id")
-        binding.imgUpld.setImageURI(sun)
+        if(sun == null){
+
+        }else{
+
+            binding.imgUpld.setImageURI(sun)
+        }
         binding.outlinedTextField.editText?.setText(bun)
         binding.outlinedTextField2.editText?.setText(gun)
         postId = kus.toString()
